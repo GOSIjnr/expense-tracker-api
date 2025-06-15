@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseTracker.Migrations
 {
     [DbContext(typeof(ExpenseTrackerDbContext))]
-    [Migration("20250613151105_UpdatedExpenseCategoryToEnum")]
-    partial class UpdatedExpenseCategoryToEnum
+    [Migration("20250615230715_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
