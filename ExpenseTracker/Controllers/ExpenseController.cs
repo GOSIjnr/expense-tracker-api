@@ -4,6 +4,7 @@ using ExpenseTracker.Core.Enums;
 using ExpenseTracker.Models;
 using ExpenseTracker.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
+using ExpenseTracker.Contracts;
 
 namespace ExpenseTracker.Controllers;
 
@@ -15,6 +16,7 @@ public class ExpenseController(IExpenseService expenseService) : ControllerBase
     private readonly IExpenseService _expenseService = expenseService;
 
     [HttpPost]
+    [Route(ExpenseRoutes.PostUrl.Create)]
     public async Task<IActionResult> CreateExpense([FromBody] Expense expense)
     {
         var result = await _expenseService.CreateExpenseAsync(expense);
@@ -93,14 +95,8 @@ public class ExpenseController(IExpenseService expenseService) : ControllerBase
         }
     }
 
-    [HttpGet(ApiRoute.Expenses.GetAll)]
-    public async Task<ActionResult<IEnumerable<Expense>>> GetAllExpensesAsync()
-    {
-        IEnumerable<Expense> expenses = await _expenseService.GetAllExpensesAsync();
-        return Ok(expenses);
-    }
-
-    [HttpPut(ApiRoute.Expenses.Update)]
+    // PUT: api/Expense/{id}
+    [HttpPut("{id:guid}")]
     public async Task<ActionResult> UpdateExpenseAsync(Guid id, [FromBody] Expense expenseToUpdate)
     {
         if (expenseToUpdate is null || id != expenseToUpdate.Id)
