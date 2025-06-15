@@ -2,7 +2,7 @@ namespace ExpenseTracker.Contracts;
 
 public static class ApiRoute
 {
-    public static class MetaData
+    public static class Meta
     {
         public const string Base = "meta";
         public const string GetExpenseCategories = "expense-categories";
